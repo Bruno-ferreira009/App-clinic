@@ -22,14 +22,14 @@ class Especialidade(models.Model):
 
 class Cliente(models.Model):
     SEXO = (
-        ("MAS", "Maculino"),
-        ("FEM", "Feminino")
+        ("M", "Maculino"),
+        ("F", "Feminino")
     )
 
     sexo = models.CharField(max_length=9, choices=SEXO, )
-    nome = models.CharField(max_length=30)
-    matricula = models.CharField(max_length=20, unique=True)
-    email = models.EmailField(blank=False, max_length=30, )
+    nome = models.CharField(max_length=100)
+    matricula = models.CharField(max_length=11, unique=True)
+    email = models.EmailField(blank=False, max_length=100, )
     celular = models.CharField(max_length=30)
     ativo = models.BooleanField()
 
@@ -39,19 +39,19 @@ class Cliente(models.Model):
 
 class Agenda(models.Model):
     HORARIOS = (
-        ("1", "07:00 ás 08:00"),
-        ("2", "08:00 ás 09:00"),
-        ("3", "09:00 ás 10:00"),
-        ("4", "10:00 ás 11:00"),
-        ("5", "11:00 ás 12:00"),
+        ("07:00 AM", "07:00 ás 08:00"),
+        ("08:00 AM", "08:00 ás 09:00"),
+        ("09:00 AM", "09:00 ás 10:00"),
+        ("10:00 AM", "10:00 ás 11:00"),
+        ("11:00 AM", "11:00 ás 12:00",)
     )
     horario = models.CharField(max_length=10, choices=HORARIOS)
     DIA = (
-        ("SEG", "segunda-feira"),
-        ("TER", "terça-feira"),
-        ("QUA", "quarta-feira"),
-        ("QUI", "quinta-feira"),
-        ("SEX", "sexta-feira"),
+        ("SEGUNDA", "segunda-feira"),
+        ("TERCA", "terça-feira"),
+        ("QUARTA", "quarta-feira"),
+        ("QUINTA", "quinta-feira"),
+        ("SEXTA", "sexta-feira"),
     )
     dia = models.CharField(max_length=20, choices=DIA)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
