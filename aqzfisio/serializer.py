@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from aqzfisio.models import Aplicativo, Especialidade, Cliente, Agenda
+from aqzfisio.validators import *
 
 
 class AplicativoSerializer(serializers.ModelSerializer):
@@ -19,19 +20,14 @@ class ClienteSerializer(serializers.ModelSerializer):
         model = Cliente
         fields = ['id', 'sexo', 'nome', 'matricula', 'email', 'celular', 'ativo']
 
-    def validate_matricula(self, matricula):
-        if len(matricula) != 11:
-            raise serializers.ValidationError("A matricula deve conter 11 dígitos")
-        return matricula
-
-    def validate_nome(self, nome):
-        if not nome.isalpha():
-            raise serializers.ValidationError("Não inclua números neste campo")
-        return nome
-    def validate_celular(self, celular):
-        if len(celular) < 11:
-            raise serializers.ValidationError("O celular deve conter 11 dígitos")
-        return celular
+    def validate(self, data):
+        if not matricula_valido(data['matricula']):
+            raise serializers.ValidationError({'matricula': "A matricula deve conter 11 dígitos"})
+        if not nome_valido(data['nome']):
+            raise serializers.ValidationError({'nome': "Não inclua números neste campo"})
+        if not celular_valido(data['celular']):
+            raise serializers.ValidationError({'celular': "O número de celular deve seguir este modelo: 11 45745-4578"})
+        return data
 
 
 class AgendaSerializer(serializers.ModelSerializer):
