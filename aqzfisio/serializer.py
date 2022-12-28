@@ -18,10 +18,10 @@ class EspecialidadeSerializer(serializers.ModelSerializer):
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
-        fields = ['id', 'sexo', 'nome', 'matricula', 'email', 'celular', 'ativo']
+        fields = ['id', 'sexo', 'nome', 'cpf', 'email', 'celular', 'ativo']
 
     def validate(self, data):
-        if not matricula_valido(data['matricula']):
+        if not cpf_valido(data['cpf']):
             raise serializers.ValidationError({'matricula': "A matricula deve conter 11 dígitos"})
         if not nome_valido(data['nome']):
             raise serializers.ValidationError({'nome': "Não inclua números neste campo"})
@@ -34,3 +34,4 @@ class AgendaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agenda
         fields = ['horario', 'dia', 'cliente']
+        depth = 1

@@ -28,7 +28,7 @@ class Cliente(models.Model):
 
     sexo = models.CharField(max_length=9, choices=SEXO, )
     nome = models.CharField(max_length=100)
-    matricula = models.CharField(max_length=11, unique=True)
+    cpf = models.IntegerField(unique=True)
     email = models.EmailField(blank=False, max_length=100, )
     celular = models.CharField(max_length=30)
     ativo = models.BooleanField()
@@ -55,6 +55,7 @@ class Agenda(models.Model):
     )
     dia = models.CharField(max_length=20, choices=DIA)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    # dia = models.DateField(help_text="Insira uma data para agenda", validators=[validar_dia])
 
     def __str__(self):
         return self.dia

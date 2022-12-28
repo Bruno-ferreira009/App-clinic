@@ -1,8 +1,8 @@
 import re
 
 
-def matricula_valido(numero_da_matricula):
-    return len(numero_da_matricula) == 11
+def cpf_valido(numero_do_cpf):
+    return len(numero_do_cpf) == 11
 
 
 def nome_valido(nome):

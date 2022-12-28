@@ -19,9 +19,9 @@ admin.site.register(Especialidade, Especialidades)
 
 
 class Clientes(admin.ModelAdmin):
-    list_display = ('id', 'nome', 'matricula', 'email', 'celular')
+    list_display = ('id', 'nome', 'cpf', 'email', 'celular')
     list_display_links = ('id', 'nome')
-    search_fields = ('id', 'nome', 'matricula')
+    search_fields = ('id', 'nome', 'cpf')
     list_per_page = 10
 
 
