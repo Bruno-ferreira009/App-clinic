@@ -22,7 +22,7 @@ class Especialidade(models.Model):
 
 class Cliente(models.Model):
     SEXO = (
-        ("M", "Maculino"),
+        ("M", "Masculino"),
         ("F", "Feminino")
     )
 
