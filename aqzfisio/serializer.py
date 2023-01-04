@@ -33,5 +33,5 @@ class ClienteSerializer(serializers.ModelSerializer):
 class AgendaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agenda
-        fields = ['horario', 'dia', 'cliente']
+        fields = '__all__'
         depth = 1
