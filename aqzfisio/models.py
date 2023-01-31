@@ -23,7 +23,9 @@ class Especialidade(models.Model):
 class Cliente(models.Model):
     SEXO = (
         ("M", "Masculino"),
-        ("F", "Feminino")
+        ("F", "Feminino"),
+        ("O", "Outros"),
+        ("N", "Prefiro não informar"),
     )
 
     sexo = models.CharField(max_length=9, choices=SEXO, )
