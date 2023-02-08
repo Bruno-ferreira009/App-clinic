@@ -6,7 +6,9 @@ def cpf_valido(numero_do_cpf):
 
 
 def nome_valido(nome):
-    return nome.isalpha()
+    modelo = '^/w [a-zA-Z0-9_]'
+    resposta = re.findall(modelo, nome)
+    return resposta
 
 
 def celular_valido(numero_celular):
