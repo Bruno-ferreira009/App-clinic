@@ -30,7 +30,7 @@ class AgendaViewSet(viewsets.ModelViewSet):
     serializer_class = AgendaSerializer
 
     def create(self, request, *args, **kwargs):
-        cliente = Cliente.objects.get(cliente=request.data['cliente']['id'])
+        cliente = Cliente.objects.get(id=request.data['cliente']['id'])
         agenda = Agenda.objects.create(
             horario=request.data['horario'],
             dia=request.data['dia'],
