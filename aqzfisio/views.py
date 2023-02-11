@@ -1,4 +1,7 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from django.http.response import JsonResponse
+
 from aqzfisio.models import *
 from aqzfisio.serializer import AplicativoSerializer, EspecialidadeSerializer, ClienteSerializer, AgendaSerializer
 
@@ -26,4 +29,14 @@ class AgendaViewSet(viewsets.ModelViewSet):
     queryset = Agenda.objects.all()
     serializer_class = AgendaSerializer
 
+    def create(self, request, *args, **kwargs):
+        cliente = Cliente.objects.get(cliente=request.data['cliente']['id'])
+        agenda = Agenda.objects.create(
+            horario=request.data['horario'],
+            dia=request.data['dia'],
+            cliente=cliente
+        )
 
+        agenda = AgendaSerializer(agenda)
+
+        return Response(agenda.data)

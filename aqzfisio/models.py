@@ -56,7 +56,7 @@ class Agenda(models.Model):
         ("SEXTA", "sexta-feira"),
     )
     dia = models.CharField(max_length=20, choices=DIA)
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='cliente')
     # dia = models.DateField(help_text="Insira uma data para agenda", validators=[validar_dia])
 
     def __str__(self):
